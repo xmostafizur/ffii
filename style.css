@@ -21,10 +21,9 @@ h2 {
     color: #333;
 }
 
-.tool-grid {
+.tool-row {
     display: flex;
     justify-content: space-around;
-    flex-wrap: wrap;
     margin-top: 20px;
 }
 
