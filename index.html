@@ -4,7 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subjects App</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body, html {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header {
+            background-color: #32cd32;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            position: absolute;
+            top: 0;
+        }
+
+        .tools-container {
+            margin-top: 80px; /* শীর্ষ থেকে হেডার স্থান দিতে */
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .tool-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .tool-item {
+            background-color: white;
+            border: 2px solid #32cd32;
+            border-radius: 8px;
+            width: 150px;
+            text-align: center;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .tool-item img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .tool-item p {
+            margin: 10px 0 0 0;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
     <div class="header">
@@ -13,8 +70,8 @@
     
     <div class="tools-container">
         <h2>All Notes</h2>
-        <!-- প্রথম সারি -->
-        <div class="tool-row">
+        <!-- একক কলাম -->
+        <div class="tool-column">
             <div class="tool-item">
                 <img src="https://cdn-icons-png.flaticon.com/512/3153/3153038.png" alt="Math">
                 <p>Math</p>
@@ -23,9 +80,6 @@
                 <img src="https://cdn-icons-png.flaticon.com/512/7417/7417849.png" alt="Textile">
                 <p>Textile</p>
             </div>
-        </div>
-        <!-- দ্বিতীয় সারি -->
-        <div class="tool-row">
             <div class="tool-item">
                 <img src="https://cdn-icons-png.flaticon.com/512/3463/3463594.png" alt="Physics">
                 <p>Physics</p>
