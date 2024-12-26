@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Username & Email Generator</title>
+    <title>Advanced Generator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -60,7 +60,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Random Username & Email Generator</h1>
+        <h1>Advanced Generator</h1>
+
+        <!-- Username Box -->
         <div class="box">
             <label>Username:</label>
             <div class="input-group">
@@ -68,6 +70,8 @@
                 <button id="copyUsername">Copy</button>
             </div>
         </div>
+
+        <!-- Email Box -->
         <div class="box">
             <label>Email:</label>
             <div class="input-group">
@@ -75,21 +79,44 @@
                 <button id="copyEmail">Copy</button>
             </div>
         </div>
+
+        <!-- Password Box -->
+        <div class="box">
+            <label>Password:</label>
+            <div class="input-group">
+                <input type="text" id="password" readonly>
+                <button id="copyPassword">Copy</button>
+            </div>
+        </div>
+
+        <!-- Custom Input Box -->
+        <div class="box">
+            <label>Custom Text:</label>
+            <div class="input-group">
+                <input type="text" id="customText">
+                <button id="copyCustomText">Copy</button>
+            </div>
+        </div>
     </div>
     <script>
         const usernameInput = document.getElementById("username");
         const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
+        const customTextInput = document.getElementById("customText");
+
         const copyUsernameBtn = document.getElementById("copyUsername");
         const copyEmailBtn = document.getElementById("copyEmail");
+        const copyPasswordBtn = document.getElementById("copyPassword");
+        const copyCustomTextBtn = document.getElementById("copyCustomText");
 
-        // Generate unique usernames in fshsh3_ua format
+        // Generate random username
         function generateUsername() {
             const random = Math.random().toString(36).substring(2, 5); // Random 3 chars
             const suffix = Math.random().toString(36).substring(2, 4); // Random 2 chars
             return `fshsh3_${random}${suffix}`;
         }
 
-        // Generate random emails
+        // Generate random email
         function generateEmail() {
             const domains = ["example.com", "mail.com", "test.com"];
             const random = Math.random().toString(36).substring(2, 8);
@@ -97,10 +124,16 @@
             return `${random}@${domain}`;
         }
 
-        // Update username and email
+        // Generate random 8-digit password
+        function generatePassword() {
+            return Math.random().toString(36).substring(2, 10).toUpperCase();
+        }
+
+        // Update all fields
         function updateFields() {
             usernameInput.value = generateUsername();
             emailInput.value = generateEmail();
+            passwordInput.value = generatePassword();
         }
 
         // Copy functionality
@@ -112,6 +145,8 @@
         // Event listeners for copy buttons
         copyUsernameBtn.addEventListener("click", () => copyToClipboard(usernameInput));
         copyEmailBtn.addEventListener("click", () => copyToClipboard(emailInput));
+        copyPasswordBtn.addEventListener("click", () => copyToClipboard(passwordInput));
+        copyCustomTextBtn.addEventListener("click", () => copyToClipboard(customTextInput));
 
         // Initialize fields and update every 5 seconds
         updateFields();
