@@ -3,108 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subjects App</title>
+    <title>Random Username & Email Generator</title>
     <style>
-        body, html {
+        body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
         }
-
-        .header {
-            background-color: #32cd32;
-            color: white;
+        .container {
             text-align: center;
-            padding: 10px 0;
-            width: 100%;
-            position: absolute;
-            top: 0;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            width: 400px;
         }
-
-        .tools-container {
-            margin-top: 80px;
-            text-align: center;
-        }
-
-        h2 {
+        h1 {
+            margin-bottom: 20px;
             color: #333;
         }
-
-        .tool-column {
+        .box {
+            margin-bottom: 15px;
+        }
+        .input-group {
             display: flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
-
-        .tool-item {
-            background-color: white;
-            border: 2px solid #32cd32;
-            border-radius: 8px;
-            width: 150px;
-            text-align: center;
-            padding: 15px;
-            margin: 10px 0;
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 70%;
         }
-
-        .tool-item img {
-            width: 50px;
-            height: 50px;
+        button {
+            padding: 10px 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
-
-        .tool-item p {
-            margin: 10px 0 0 0;
-            font-weight: bold;
-            color: #333;
+        button:hover {
+            background: #45a049;
         }
-
-        .tool-item a {
-            text-decoration: none;
-            color: inherit;
+        button:active {
+            transform: scale(0.98);
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Subjects App</h1>
-    </div>
-    
-    <div class="tools-container">
-        <h2>All Notes</h2>
-        <div class="tool-column">
-            <div class="tool-item">
-                <a href="https://www.facebook.com/profile.php?id=61564447597530" target="_blank">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3153/3153038.png" alt="Math">
-                    <p>Math</p>
-                </a>
+    <div class="container">
+        <h1>Random Username & Email Generator</h1>
+        <div class="box">
+            <label>Username:</label>
+            <div class="input-group">
+                <input type="text" id="username" readonly>
+                <button id="copyUsername">Copy</button>
             </div>
-            <div class="tool-item">
-                <a href="https://www.facebook.com/profile.php?id=61552925247716" target="_blank">
-                    <img src="https://cdn-icons-png.flaticon.com/512/7417/7417849.png" alt="Textile">
-                    <p>Textile</p>
-                </a>
-            </div>
-            <div class="tool-item">
-                <a href="https://www.facebook.com/profile.php?id=61560304905583" target="_blank">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3463/3463594.png" alt="Physics">
-                    <p>Physics</p>
-                </a>
-            </div>
-            <div class="tool-item">
-                <a href="https://www.facebook.com/amirahiyanarbow" target="_blank">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2387/2387545.png" alt="Chemistry">
-                    <p>Chemistry</p>
-                </a>
-            </div>
-            <div class="tool-item">
-                <img src="https://cdn-icons-png.flaticon.com/512/9897/9897145.png" alt="Report">
-                <p>Report</p>
+        </div>
+        <div class="box">
+            <label>Email:</label>
+            <div class="input-group">
+                <input type="text" id="email" readonly>
+                <button id="copyEmail">Copy</button>
             </div>
         </div>
     </div>
+    <script>
+        const usernameInput = document.getElementById("username");
+        const emailInput = document.getElementById("email");
+        const copyUsernameBtn = document.getElementById("copyUsername");
+        const copyEmailBtn = document.getElementById("copyEmail");
+
+        // Generate unique usernames in fshsh3_ua format
+        function generateUsername() {
+            const random = Math.random().toString(36).substring(2, 5); // Random 3 chars
+            const suffix = Math.random().toString(36).substring(2, 4); // Random 2 chars
+            return `fshsh3_${random}${suffix}`;
+        }
+
+        // Generate random emails
+        function generateEmail() {
+            const domains = ["example.com", "mail.com", "test.com"];
+            const random = Math.random().toString(36).substring(2, 8);
+            const domain = domains[Math.floor(Math.random() * domains.length)];
+            return `${random}@${domain}`;
+        }
+
+        // Update username and email
+        function updateFields() {
+            usernameInput.value = generateUsername();
+            emailInput.value = generateEmail();
+        }
+
+        // Copy functionality
+        function copyToClipboard(inputField) {
+            inputField.select();
+            document.execCommand("copy");
+        }
+
+        // Event listeners for copy buttons
+        copyUsernameBtn.addEventListener("click", () => copyToClipboard(usernameInput));
+        copyEmailBtn.addEventListener("click", () => copyToClipboard(emailInput));
+
+        // Initialize fields and update every 5 seconds
+        updateFields();
+        setInterval(updateFields, 5000);
+    </script>
 </body>
 </html>
